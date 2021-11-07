@@ -14,8 +14,8 @@ router.get('/', (req, res) => {
         attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
       }
     ]
-  }).then(dbTag => {
-    res.json(dbTag);
+  }).then(tags => {
+    res.json(tags);
   });
 });
 
@@ -23,9 +23,7 @@ router.get('/:id', (req, res) => {
   // find a single tag by its `id`
   // be sure to include its associated Product data
   Tag.findOne({
-    where: {
-      id: req.params.id
-    },
+    where: {id: req.params.id},
     attributes: ['id', 'tag_name'],
     indclude: [
       {
@@ -33,8 +31,8 @@ router.get('/:id', (req, res) => {
         attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
       }
     ]
-    }).then(dbTag => {
-      res.json(dbTag);
+  }).then(tags => {
+      res.json(tags);
     })
 });
 
@@ -42,8 +40,8 @@ router.post('/', (req, res) => {
   // create a new tag
   Tag.Create({
     tag_name: req.body.tag_name
-  }).then(dbTag =>{
-    res.json(dbTag);
+  }).then(tags =>{
+    res.json(tags);
   });
 });
 
@@ -53,8 +51,8 @@ router.put('/:id', (req, res) => {
     where: {
       id: req.body.id
     }
-  }).then(dbTag => {
-    res.json(dbTag);
+  }).then(tags => {
+    res.json(tags);
   });
 });
 
@@ -64,8 +62,8 @@ router.delete('/:id', (req, res) => {
     where: {
     id: req.params.id
     }
-  }).then(dbTag => {
-    res.json(dbTag);
+  }).then(tags => {
+    res.json(tags);
   });
 });
 
